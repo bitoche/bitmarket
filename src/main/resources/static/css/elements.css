@@ -1,0 +1,38 @@
+.page-body{
+    margin: 0 auto;
+    margin-top:-20px;
+    z-index: 1;
+    
+    
+}
+.body-content{
+    padding-top:20px;
+    margin: 0 10px;
+    border-width: 1px;
+    border-top:0;
+    border-style: solid;
+}
+
+.full-width-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 10px;
+    padding:20px;
+    margin: 2px;
+}
+.full-width-links:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 200ms;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+}
+.full-width-links:hover::after{
+    transition: 200ms;
+}
+
+.page-h3{
+    margin:8px;
+    padding: 2px;
+}
+
+
