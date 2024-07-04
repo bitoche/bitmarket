@@ -1,0 +1,27 @@
+.user-data{
+    /*border: 1px solid black;*/
+    border-bottom: 1px solid black;
+    display: inline-flex;
+    margin: 10px auto;
+}
+.user-data-line{
+    /*border:1px solid red;*/
+    padding:10px;
+}
+.data-container{
+    max-width: max-content;
+    min-width: min-content;
+    margin: 10px auto;
+}
+.user-data-line-top{
+    background-color: rgba(220,220,236,0.99);
+}
+
+.user-data-line-bottom{
+
+}
+
+hr{
+    width: 1px;
+    color:black;
+}
