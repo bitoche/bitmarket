@@ -61,7 +61,7 @@
     flex-direction: row;
     align-items: center;
     align-content: center;
-    padding: 5px !important;
+    padding: 5px 10px!important;
     text-decoration: none;
     color:black;
 }
@@ -107,9 +107,12 @@
     border-radius: 10px;
 }
 
+.hamb-btn{
+    margin:0!important;
+}
 
 
-@media (max-width: 768px) {
+@media (max-width: 890px) {
     .nav-center-actions {
         display: none;
     }
@@ -121,7 +124,7 @@
     }
 }
 
-@media (min-width: 768px){
+@media (min-width: 890px){
     .navbar{
         max-width: 1600px;
     }
@@ -143,7 +146,4 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-}
-.dr-profile-name{
-    margin: 0;
 }

@@ -7,13 +7,10 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.DelegatingSecurityContextRepository;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
@@ -41,11 +38,12 @@ public class SecurityConfig extends WebSecurityConfiguration {
                 .authorizeHttpRequests(
                         Objects.requireNonNull(authorizeHttpRequests ->
                                 authorizeHttpRequests.
-                                        requestMatchers("/css/**", "/js/**", "/res/**", "./templates/schemes/**", "attachments").permitAll().
+                                        requestMatchers("/css/**", "/js/**", "/res/**", "./templates/schemes/**", "attachments", "static/favicon.ico").permitAll().
                                         requestMatchers("/", "/check-email", "/login", "/register", "/confirm-account").permitAll().
                                         requestMatchers("/adm/**").hasAuthority("ADMIN").
                                         requestMatchers("/mod/**", "/mod").hasAuthority("MODER").
-                                        requestMatchers("/profile").authenticated())
+                                        requestMatchers("/profile").authenticated().
+                                        anyRequest().permitAll())
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")

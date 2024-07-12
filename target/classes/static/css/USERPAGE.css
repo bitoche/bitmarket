@@ -1,12 +1,24 @@
 .user-data{
     /*border: 1px solid black;*/
     border-bottom: 1px solid black;
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     margin: 10px auto;
+    overflow: scroll;
+}
+@media (max-width: 890px) {
+    .user-data-line{
+        min-width: 95%;
+        max-width: min-content;
+        margin: 10px 0 !important;
+    }
+    .user-data{
+        margin: 10px 10px;
+    }
 }
 .user-data-line{
     /*border:1px solid red;*/
-    padding:10px;
+    margin:10px;
 }
 .data-container{
     max-width: max-content;

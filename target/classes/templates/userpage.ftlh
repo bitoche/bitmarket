@@ -26,7 +26,6 @@
 
                     ${princ.getFullName()}
                 </div>
-                <hr/>
                 <div class="user-data-line">
                     <#--username-->
                     <div class="user-data-line-top">
@@ -35,7 +34,6 @@
 
                     ${princ.getEmail()}
                 </div>
-                <hr/>
                 <div class="user-data-line">
                     <#--decryptedpass-->
                     <div class="user-data-line-top">

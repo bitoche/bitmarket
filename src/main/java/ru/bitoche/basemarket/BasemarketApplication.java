@@ -16,6 +16,7 @@ public class BasemarketApplication {
         /*Если создаем пользователя вручную, то надо зашифровать пароль
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         System.out.println(passwordEncoder.encode("user"));*/
+
     }
 
 }

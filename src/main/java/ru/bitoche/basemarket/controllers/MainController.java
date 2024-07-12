@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.bitoche.basemarket.BasemarketApplication;
 import ru.bitoche.basemarket.services.AppUserService;
 import ru.bitoche.basemarket.services.MainService;
 
@@ -33,6 +34,8 @@ public class MainController {
     //mainpage
     @GetMapping("/")
     public String returnMainPage(Model model, Principal principal){
+        var pathToImg = "/res/objectImages/";
+        model.addAttribute("imgFilePath", pathToImg);
         model.addAttribute("allObjects", mainService.getAllObjects());
         model.addAttribute("allTags", mainService.getAllTags());
         if (principal!=null){
@@ -44,6 +47,7 @@ public class MainController {
     public String getMyUser(Model model, Principal principal){
         if(principal!=null){
             model.addAttribute("princ", appUserService.getUserByUsername(principal.getName()));
+            model.addAttribute("entryLink", "profile");
             return "userpage";
         }
         else return "login";

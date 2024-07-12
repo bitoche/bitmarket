@@ -1,7 +1,6 @@
 package ru.bitoche.basemarket.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AnTag {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
-    
+    @ManyToOne
+    private TagGroup tagGroup;
 }

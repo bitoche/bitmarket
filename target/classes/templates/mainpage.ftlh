@@ -15,6 +15,20 @@
 <div class="page-body">
     <div class="body-content">
         <div class="r-block-h-g">
+            <div class="obj-card-line">
+                <#list allObjects as obj>
+                    <div class="obj-card">
+                        <img loading="lazy" class="obj-card-i-card" src="${imgFilePath}${obj.ICard}">
+                        <a href="/obj/${obj.getId()}">${obj.getTitle()}</a>
+                        <p>${obj.getDescription()}</p>
+                        <#if obj.getTags()?? && obj.getTags()?has_content>
+                            <#list obj.getTags() as objTag>
+                                <a href="/tag/${objTag.getId()}">${objTag.getName()}</a>
+                            </#list>
+                        </#if>
+                    </div>
+                </#list>
+            </div>
             <a class="text-a" href="#">Ссылка</a>
         </div>
     </div>

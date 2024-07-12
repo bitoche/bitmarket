@@ -1,0 +1,31 @@
+.obj-card{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 32%;
+    justify-content: space-evenly;
+    min-width: 19%;
+    border-radius: 20px;
+    border:1px solid;
+    box-shadow: 0 0 10px 10px rgba(0,0,0,0.05);
+}
+@media (max-width: 890px) {
+    .obj-card{
+        max-width: 99%;
+        min-width: 49%;
+    }
+}
+.obj-card-title{
+    text-decoration: none;
+    color: black;
+    mix-blend-mode: color;
+    text-align: center;
+    align-items: center;
+}
+.obj-card-title:visited{
+    color: black;
+    mix-blend-mode: color;
+}
+.obj-card-desc{
+
+}
