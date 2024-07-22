@@ -51,7 +51,7 @@
                                 Выберите картинку-постер для объекта в формате .jpeg (370x460)
                             </label>
                             <div class="image-selector+preview">
-                                <input id="img-c-input" required oninput="previewImage(this.files[0])" class="obj-adding-img-select" name="imageCard" type="file" accept="image/jpeg">
+                                <input id="img-c-input" required oninput="previewImage(this.files[0])" class="obj-adding-img-select" name="imageCard" type="file" accept="image/*">
                                 <div class="image-preview">
                                     <p class="preview-title">Превью</p>
                                     <img class="img-select-preview" id="preview">
@@ -67,14 +67,10 @@
                                 function confirmProductAdding(){
                                     let currForm = document.getElementById("obj-adding-form");
                                     if(currForm.checkValidity()){
-
                                         var formData = new FormData();
                                         formData.append("name", document.getElementById("tit-input").value)
                                         formData.append("description", document.getElementById("desc-input").value)
-
-                                        var blob = new Blob([document.getElementById("img-c-input").value], {type: "image/jpeg"} )
-
-                                        formData.append("ICard", blob)
+                                        formData.append("ICard", document.getElementById("img-c-input").files[0])
                                         var request = new XMLHttpRequest();
                                         request.open("POST", "/mod/addObject");
                                         request.send(formData);

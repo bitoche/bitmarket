@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.bitoche.basemarket.models.AnTag;
 import ru.bitoche.basemarket.models.TagGroup;
 import ru.bitoche.basemarket.services.AppUserService;
@@ -71,7 +72,7 @@ public class ModeratorController {
         return "redirect:/mod/";
     }
 
-    @GetMapping("/deleteTag/{tagId}")
+    @GetMapping("/deleteTag/{tagId}") //todo не работает удаление из-за неработающего каскадного удаления, починить. Костыль - пофиксить через выставление типа данных каскейд в бд
     public String deleteTag(@PathVariable Long tagId, Model model, Principal principal){
         var currTag = tagService.findTagById(tagId);
         var objectsWithThisTag = objectService.getObjectsByTagId(tagId);
@@ -90,8 +91,10 @@ public class ModeratorController {
     public String addObject(
             @RequestParam String name,
             @RequestParam String description,
-            @RequestParam Blob ICard
+            @RequestParam MultipartFile ICard
     ){
+        System.out.println("FILE LOADED: "+ICard.getName()+"///"+ICard.getOriginalFilename()+"\nfiletype: "+ICard.getContentType());
+        //todo Допилить сохранение в папку на пк, так же создать метод который их будет с пк подгружать. Нужен FileService
         return "redirect:/mod/";
     }
 }

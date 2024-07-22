@@ -9,6 +9,7 @@ import ru.bitoche.basemarket.models.TagGroup;
 import ru.bitoche.basemarket.repositories.ITagGroupRepository;
 import ru.bitoche.basemarket.repositories.ITagsRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,6 +45,16 @@ public class TagService {
         return tagsRepository.findAll().stream().toList();
     }
     public List<TagGroup> findAllTagsWithGroups(){
-        return tagGroupRepository.findAll().stream().toList();
+        var allTagGroups = new ArrayList<>(tagGroupRepository.findAll().stream().toList());
+        if (allTagGroups.isEmpty()){
+            var mainTagGroup = new TagGroup(null,
+                    "Все",
+                    new ArrayList<>(),
+                    new ArrayList<>(),
+                    true);
+            saveGroup(mainTagGroup);
+            allTagGroups.add(mainTagGroup);
+        }
+        return allTagGroups;
     }
 }

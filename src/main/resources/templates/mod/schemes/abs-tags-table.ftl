@@ -82,12 +82,12 @@
     }
     function deleteTag(tagId, tagName){
         if(confirm('Вы действительно хотите удалить тег "'+tagName+'"?\nЭто действие необратимо.')){
-            document.location.href = "/mod/deleteTag/"+tagId; //todo добавить метод в контроллер модера
+            document.location.href = "/mod/deleteTag/"+tagId;
         }
     }
     function deleteTagGroup(tagGroupId, tagGroupName){
         if(confirm('Вы действительно хотите удалить группу тегов "'+tagGroupName+'"?\nЭто действие необратимо.')){
-            document.location.href = "/mod/deleteTagGroup/"+tagGroupId; //todo добавить метод в контроллер модера
+            document.location.href = "/mod/deleteTagGroup/"+tagGroupId;
         }
     }
 </script>

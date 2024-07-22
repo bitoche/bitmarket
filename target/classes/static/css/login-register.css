@@ -52,3 +52,43 @@
     padding:20px
 }
 
+#eye {
+    display: inline-block;
+    position: relative;
+    width: 1em; /* ширина элемента */
+    height: 1em; /* высота элемента */
+    background: currentColor; /* цвет иконки как цвет текста */
+    border-radius: 70% 0 / 70%;
+    transform: rotate(45deg);
+}
+#eye::before,
+#eye::after {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    background: #fff;
+    border-radius: 100%;
+}
+#eye::after {
+    width: 30%;
+    height: 30%;
+    top: 35%;
+    left: 35%;
+    background: inherit; /* цвет зрачка как у родителя */
+}
+.eye-container{
+    position: fixed;
+    right: 26px;
+    cursor:pointer;
+    padding-top: 4px;
+}
+.eye-active{
+    background-color: green !important;
+}
+#pass{
+    width: 80%;
+}
+

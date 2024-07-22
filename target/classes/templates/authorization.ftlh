@@ -28,7 +28,10 @@
                     <label class="input-name">
                         Пароль
                     </label>
-                    <input class="input-area" required type="password" name="password" id="pass">
+                    <input class="input-area" required type="password" name="password" id="pass" style="width:65%">
+                    <div class="eye-container">
+                        <span class="show-pass-icon" id="eye" title="Показать пароль"></span>
+                    </div>
                 </div>
             </div>
             <div class="form-bottom">
@@ -38,6 +41,19 @@
     </div>
 </div>
 <script>
+    const showPassButton = document.getElementById("eye");
+    showPassButton.addEventListener('click', () => {
+        const inputPass = document.getElementById("pass");
+        if (inputPass.getAttribute('type') === 'password'){
+            inputPass.setAttribute('type', 'text');
+            showPassButton.setAttribute('title', "Скрыть пароль");
+            showPassButton.classList.add('eye-active');
+        } else{
+            inputPass.setAttribute('type', 'password');
+            showPassButton.setAttribute('title', "Показать пароль");
+            showPassButton.classList.remove('eye-active');
+        }
+    })
     function submit(){
         document.getElementById("page-form").submit();
     }

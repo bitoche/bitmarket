@@ -80,7 +80,7 @@
     height: 100%;
 }
 .profile-name{
-    text-wrap: nowrap;
+    text-wrap: none;
 }
 .notif-img{
     width: 80%;

@@ -30,7 +30,10 @@
                     <label class="input-name">
                         Пароль
                     </label>
-                    <input class="input-area" minlength="8" maxlength="32" required type="password" name="password" id="pass">
+                    <input class="input-area pass" minlength="8" maxlength="32" required type="password" name="password" id="pass">
+                    <div class="eye-container">
+                        <span class="show-pass-icon" id="eye" title="Показать пароль"></span>
+                    </div>
                 </div>
                 <small id="pass-help" class="hidden" style="color: black">Длина пароля должна быть в пределах 8 - 32 символов</small>
                 <div class="body-line">
@@ -41,15 +44,15 @@
                 </div>
                 <div class="body-line">
                     <label class="input-name">
-                        Имя
-                    </label>
-                    <input class="input-area" required type="text" name="firstName">
-                </div>
-                <div class="body-line">
-                    <label class="input-name">
                         Фамилия
                     </label>
                     <input class="input-area" required type="text" name="secondName">
+                </div>
+                <div class="body-line">
+                    <label class="input-name">
+                        Имя
+                    </label>
+                    <input class="input-area" required type="text" name="firstName">
                 </div>
                 <div class="body-line">
                     <label class="input-name">
@@ -67,6 +70,19 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
+    const showPassButton = document.getElementById("eye");
+    showPassButton.addEventListener('click', () => {
+        const inputPass = document.getElementById("pass");
+        if (inputPass.getAttribute('type') === 'password'){
+            inputPass.setAttribute('type', 'text');
+            showPassButton.setAttribute('title', "Скрыть пароль");
+            showPassButton.classList.add('eye-active');
+        } else{
+            inputPass.setAttribute('type', 'password');
+            showPassButton.setAttribute('title', "Показать пароль");
+            showPassButton.classList.remove('eye-active');
+        }
+    })
     function confirm(){
         let pass = document.getElementById("pass").value;
         let retryPass = document.getElementById("retryPass").value;
