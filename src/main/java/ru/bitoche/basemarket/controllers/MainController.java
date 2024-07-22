@@ -3,6 +3,8 @@ package ru.bitoche.basemarket.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import ru.bitoche.basemarket.services.MainService;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @AllArgsConstructor
@@ -48,6 +51,28 @@ public class MainController {
         if(principal!=null){
             model.addAttribute("princ", appUserService.getUserByUsername(principal.getName()));
             model.addAttribute("entryLink", "profile");
+            return "userpage";
+        }
+        else return "login";
+    }
+    @PostMapping("/giveMeAccessToChangePass")
+    public String giveMeAccessToChangePass(@RequestParam String userEnteredPass, Principal principal, Model model){
+        if(principal!=null){
+            model.addAttribute("princ", appUserService.getUserByUsername(principal.getName()));
+            model.addAttribute("entryLink", "profile");
+
+            PasswordEncoder pe = new BCryptPasswordEncoder();
+            if(Objects.equals(appUserService.getUserByUsername(principal.getName()).getPassword(), pe.encode(userEnteredPass))){
+                model.addAttribute("isPassChangingAllowed", true);
+                model.addAttribute("isInvalidPass", false);
+                System.out.println(principal.getName()+" pass valid: "+ userEnteredPass);
+            }
+            else{
+                model.addAttribute("isPassChangingAllowed", false);
+                model.addAttribute("isInvalidPass", true);
+                System.out.println(principal.getName()+"|\tpass invalid:|\t"+ userEnteredPass);
+            }
+
             return "userpage";
         }
         else return "login";

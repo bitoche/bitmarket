@@ -52,4 +52,6 @@ public class UserController {
     public ResponseEntity<?> confirmUserAccount(@RequestParam("token")String confirmationToken) {
         return userService.confirmEmail(confirmationToken);
     }
+
+
 }
