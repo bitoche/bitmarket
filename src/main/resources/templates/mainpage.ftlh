@@ -14,7 +14,7 @@
 <#include "schemes/navbar.ftl">
 <div class="page-body">
     <div class="body-content">
-        <div class="r-block-h-g">
+        <div class="r-block-h-g mainp-card">
             <div class="obj-card-line">
                 <#list allObjects as obj>
                     <div class="obj-card">

@@ -38,6 +38,7 @@
                 <a href="#conf" onclick="submit()">Войти</a>
             </div>
         </form>
+        <small style="color: gray"><a href="/pass-recovery">Забыли пароль?</a></small>
     </div>
 </div>
 <script>

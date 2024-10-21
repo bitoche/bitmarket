@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Авторизация - BitMarket</title>
+    <title>Восстановление доступа - BitMarket</title>
     <link rel="stylesheet" href="css/login-register.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
@@ -14,19 +14,19 @@
 <div class="form">
     <div class="inner-form-data">
         <div class="form-title">
-            <h3>Вход</h3> <small style="color: gray">или <a href="/register">зарегистрироваться</a>?</small>
+            <h3>Восстановление доступа</h3> <small style="color: gray">или <a href="/register">зарегистрироваться</a>?</small>
         </div>
-        <form method="post" id="page-form" action="/login">
+        <form method="post" id="page-form" action="/pass-recovery">
             <div class="form-body">
                 <div class="body-line">
                     <label class="input-name">
                         Email
                     </label>
-                    <input id="email-field" class="input-area" required type="email" name="username">
+                    <input id="email-field" class="input-area" required type="email" name="email">
                 </div>
                 <div class="body-line">
                     <label class="input-name">
-                        Пароль
+                        Новый пароль
                     </label>
                     <input class="input-area" required type="password" name="password" id="pass" style="width:65%">
                     <div class="eye-container">
@@ -35,10 +35,9 @@
                 </div>
             </div>
             <div class="form-bottom">
-                <a href="#conf" onclick="submit()">Войти</a>
+                <a href="#conf" onclick="submit()">Подтвердить</a>
             </div>
         </form>
-        <small style="color: gray"><a href="/pass-recovery">Забыли пароль?</a></small>
     </div>
 </div>
 <script>

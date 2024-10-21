@@ -17,7 +17,9 @@
 </style>
 <body>
 <div class="navbar">
-    <a class="r-block-h-g text-a nav-logo" href="/">Главная</a>
+    <a class="r-block-h-g text-a nav-logo" href="/">
+        <img style="width: 7em" src="BITOCHE-title.png"/>
+    </a>
     <div class="nav-center-actions">
         <#if princ?? && princ?has_content>
             <#if princ.haveAccessToChangeTags()>

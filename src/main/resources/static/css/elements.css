@@ -35,4 +35,16 @@
     padding: 2px;
 }
 
-
+.mainp-card {
+    max-width: 32%;
+    min-width: 32%;
+}
+@media (max-width: 890px) {
+    .mainp-card{
+        max-width: 49%;
+        min-width: 49%;
+    }
+}
+.obj-card-i-card{
+    width: 99%;
+}

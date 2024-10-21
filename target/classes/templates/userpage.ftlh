@@ -17,6 +17,7 @@
         <h3 class="page-h3">Ваш профиль</h3>
         <div class="data-container">
             <#if !princ.isEnabled()><h4>Вам необходимо подтвердить почту. Письмо уже отправлено на ваш почтовый ящик</h4></#if>
+            <#if isInvalidPass?? && isInvalidPass><h4 style="color: red" onload="event, getUserPassChangingWindow()">Неверный пароль! Попробуйте еще раз.</h4></#if>
             <div class="user-data" >
                 <div class="user-data-line">
                     <#--фио-->
@@ -39,8 +40,7 @@
                     <div class="user-data-line-top">
                         Ваш пароль для входа
                     </div>
-
-                    <a href="#getPass" onclick="getUserPass()">Посмотреть</a>
+                    <a href="#getPass" onclick="getUserPassChangingWindow()">Сменить</a>
                 </div>
             </div>
         </div>
@@ -53,11 +53,36 @@
         </div>
     </div>
 </div>
+<#if isPassChangingAllowed?? && isPassChangingAllowed && isInvalidPass?? && !isInvalidPass>
+    <div class="pass-changing-window">
+        <form id="changepass-form" method="post" action="/changePassword">
+            <input id="pass-input" name="pass" type="text" minlength=8 maxlength=32 required placeholder="Новый пароль">
+            <input id="retpass-input" type="text" required placeholder="Повторите новый пароль">
+            <a href="#tryChangePass" onclick="tryChangePass()">Подтвердить</a>
+        </form>
+    </div>
+</#if>
 </body>
 <script>
-function getUserPass(){
-    /*todo сделать функцию вывода пароля*/
-    alert("Пока недоступно! Загляние позже.")
+function getUserPassChangingWindow(){
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/giveMeAccessToChangePass';
+    var passField = document.createElement('input');
+    passField.type = 'hidden';
+    passField.name = 'userEnteredPass';
+    passField.value = prompt('Введите ваш текущий пароль');
+    form.appendChild(passField);
+    document.body.appendChild(form);
+    form.submit();
+}
+function tryChangePass(){
+    if(document.getElementById('pass-input').value === document.getElementById('retpass-input').value){
+        let currForm = document.getElementById('changepass-form');
+        if(currForm.checkValidity()){
+            currForm.submit();
+        }
+    }
 }
 </script>
 </html>

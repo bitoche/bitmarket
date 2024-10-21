@@ -2,7 +2,7 @@ package ru.bitoche.basemarket.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.lang.Nullable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,13 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.bitoche.basemarket.BasemarketApplication;
+import ru.bitoche.basemarket.features.Logger;
 import ru.bitoche.basemarket.services.AppUserService;
 import ru.bitoche.basemarket.services.MainService;
 
 import java.security.Principal;
-import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -31,8 +29,15 @@ public class MainController {
         return "registration";
     }
     @GetMapping("/login")
-    public String returnLoginPage(){
+    public String returnLoginPage(@Nullable boolean error, Model model){
+        if(Objects.equals(error, true)){
+            model.addAttribute("error", true);
+        }
         return "authorization";
+    }
+    @GetMapping("/pass-recovery")
+    public String returnPassRecoveryPage(){
+        return "passrecovery";
     }
     //mainpage
     @GetMapping("/")
@@ -62,15 +67,18 @@ public class MainController {
             model.addAttribute("entryLink", "profile");
 
             PasswordEncoder pe = new BCryptPasswordEncoder();
-            if(Objects.equals(appUserService.getUserByUsername(principal.getName()).getPassword(), pe.encode(userEnteredPass))){
+            var userPass = appUserService.getUserByUsername(principal.getName()).getPassword();
+            if(pe.matches(userEnteredPass, userPass)){ //matches сравнивает сырой пароль и хешированный
                 model.addAttribute("isPassChangingAllowed", true);
                 model.addAttribute("isInvalidPass", false);
-                System.out.println(principal.getName()+" pass valid: "+ userEnteredPass);
+                Logger.log(this.getClass(), principal.getName()+" pass valid: "+ userEnteredPass);
+                Logger.log(this.getClass(),"--- continue | currentUserPassInDB: "+userPass+" (its hashed)");
             }
             else{
                 model.addAttribute("isPassChangingAllowed", false);
                 model.addAttribute("isInvalidPass", true);
-                System.out.println(principal.getName()+"|\tpass invalid:|\t"+ userEnteredPass);
+                Logger.log(this.getClass(),principal.getName()+" pass invalid: "+ userEnteredPass );
+                Logger.log(this.getClass(),"--- continue | currentUserPassInDB: "+userPass+" (its hashed)");
             }
 
             return "userpage";

@@ -53,5 +53,18 @@ public class UserController {
         return userService.confirmEmail(confirmationToken);
     }
 
-
+    @PostMapping("/pass-recovery")
+    public ResponseEntity<?> recoveryUser(
+            @RequestParam(name="email") String email,
+            @RequestParam(name="password") String password) throws Exception {
+        AppUser user = userService.getUserByUsername(email);
+        if(user==null){
+            return null;
+        }
+        return userService.doRecoveryPass(user, password);
+    }
+    @RequestMapping(value="/do-pass-recovery", method= {RequestMethod.GET, RequestMethod.POST})
+    public ResponseEntity<?> resetPassword(@RequestParam("token")String recoveryToken) throws Exception {
+        return userService.resetPass(recoveryToken);
+    }
 }

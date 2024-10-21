@@ -6,15 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.bitoche.basemarket.features.Logger;
 import ru.bitoche.basemarket.models.AnTag;
 import ru.bitoche.basemarket.models.TagGroup;
 import ru.bitoche.basemarket.services.AppUserService;
 import ru.bitoche.basemarket.services.ObjectService;
 import ru.bitoche.basemarket.services.TagService;
 
-import java.io.File;
 import java.security.Principal;
-import java.sql.Blob;
 import java.util.ArrayList;
 
 @Controller
@@ -93,7 +92,7 @@ public class ModeratorController {
             @RequestParam String description,
             @RequestParam MultipartFile ICard
     ){
-        System.out.println("FILE LOADED: "+ICard.getName()+"///"+ICard.getOriginalFilename()+"\nfiletype: "+ICard.getContentType());
+        Logger.log(this.getClass(),"FILE LOADED: "+ICard.getName()+"///"+ICard.getOriginalFilename()+"\nfiletype: "+ICard.getContentType());
         //todo Допилить сохранение в папку на пк, так же создать метод который их будет с пк подгружать. Нужен FileService
         return "redirect:/mod/";
     }
